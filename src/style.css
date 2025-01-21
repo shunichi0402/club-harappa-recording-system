@@ -15,11 +15,11 @@ html, body{
     width: 100%;
 }
 
-.container {
+/* .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
+} */
 
 header {
     background-color: #4CAF50;
