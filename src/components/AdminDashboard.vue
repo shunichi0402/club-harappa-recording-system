@@ -20,9 +20,26 @@
 nav ul {
   list-style-type: none;
   padding: 0;
+  background-color: #f8f9fa;
+  border-radius: 8px;
 }
 
 nav li {
-  margin: 10px 0;
+  margin: 5px 10px;
+  border: #999 1px solid;
+  border-radius: 8px;
+}
+
+nav li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  transition: all 0.3s, color 0.3s;
+}
+
+nav li:hover {
+  border: #2b632d 1px solid;
 }
 </style>
