@@ -69,7 +69,7 @@ npm run dev
 
 ## 貢献
 
-バグ報告や機能提案は、[Issues](https://github.com/your-repo/club-harappa-recording-system/issues)にて受け付けています。プルリクエストも歓迎します。
+バグ報告や機能提案は、[Issues](https://github.com/your-repo/club-harappa-recording-system/issues)にて受け付けています。プルリクエストも歓迎します。（テストしていないので誰かお願いします。）
 
 ## ライセンス
 
