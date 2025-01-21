@@ -1,5 +1,76 @@
-# Vue 3 + Vite
+# 記録システム
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+このシステムは、クラブはらっぱの参加者、種目、および記録を管理するためのウェブアプリケーションです。Vue 3とViteを使用して構築されています。
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 仕様書
+Chat GPTを使用して仕様書を作成しました。
+
+**使用したプロンプト**
+
+```
+webアプリケーションの仕様書を作成したいです。必要項目を質問して作成してください。
+```
+
+```
+あなたはプロのアプリケーションエンジニアです。
+以下に仕様書の草案を提示するので、ページ構成を考えて追記してください。
+
+# 仕様書
+[ここに↑でできた仕様書を貼り付ける]
+```
+
+```
+あなたはプロのアプリケーションエンジニアです。
+以下に仕様書の草案を提示するので、どのようなコンポーネントを作成すればいいか考えてください。
+
+# 仕様書
+[ここに↑でできた仕様書を貼り付ける]
+```
+
+- 詳細 : [仕様書](./document/仕様書.md)
+
+仕様書ができたら、VS CodeのCopilotでそれぞれのコンポーネントを作成しました。
+
+## 主な機能
+
+- **参加者管理**: 参加者の情報を登録、表示、削除することができます。
+- **種目管理**: 種目の情報を登録、表示、削除することができます。
+- **記録管理**: 参加者の記録を登録、表示、削除することができます。
+
+## 使用技術
+
+- **Vue 3**: フロントエンドフレームワーク
+- **Vite**: ビルドツール
+- **Pinia**: 状態管理ライブラリ
+
+## セットアップ
+
+プロジェクトをローカル環境にクローンし、依存関係をインストールします。
+
+```bash
+git clone https://github.com/your-repo/club-harappa-recording-system.git
+cd club-harappa-recording-system
+npm install
+```
+
+開発サーバーを起動します。
+
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:3000` を開いてアプリケーションにアクセスします。
+
+## ディレクトリ構成
+
+- `src/pages`: 各ページコンポーネント
+- `src/stores`: Piniaストア
+- `src/components`: 再利用可能なコンポーネント
+
+## 貢献
+
+バグ報告や機能提案は、[Issues](https://github.com/your-repo/club-harappa-recording-system/issues)にて受け付けています。プルリクエストも歓迎します。
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
