@@ -27,8 +27,12 @@
                 <input type="email" id="email" v-model="email" required />
             </div>
             <div>
-                <label for="clubId">所属クラブID:</label>
-                <input type="text" id="clubId" v-model="clubId" required />
+                <label for="clubId">所属クラブ:</label>
+                <select id="clubId" v-model="clubId" required>
+                    <option v-for="club in clubs" :key="club.id" :value="club.id">
+                        {{ club.name }}
+                    </option>
+                </select>
             </div>
             <button type="submit">登録</button>
         </form>
@@ -47,6 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useParticipantStore } from '../stores/participantStore'
+import { useClubStore } from '../stores/clubStore'
 
 const name = ref('')
 const address = ref('')
@@ -58,6 +63,9 @@ const message = ref('')
 
 const participantStore = useParticipantStore()
 const participants = ref([])
+
+const clubStore = useClubStore()
+const clubs = ref([])
 
 const addParticipant = async () => {
     const participant = {
@@ -88,6 +96,11 @@ const fetchParticipants = async () => {
     participants.value = participantStore.participants
 }
 
+const fetchClubs = async () => {
+    await clubStore.fetchClubs()
+    clubs.value = clubStore.clubs
+}
+
 const confirmDelete = (id) => {
     if (confirm('本当に削除しますか？')) {
         deleteParticipant(id)
@@ -101,6 +114,7 @@ const deleteParticipant = async (id) => {
 
 onMounted(() => {
     fetchParticipants()
+    fetchClubs()
 })
 </script>
 
@@ -121,7 +135,7 @@ form label {
   font-weight: bold;
 }
 
-form input {
+form input, form select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
