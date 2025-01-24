@@ -3,8 +3,8 @@
     <h1>管理者ダッシュボード</h1>
     <nav>
       <ul>
-        <li><router-link to="/dashboard/participants">参加者管理</router-link></li>
-        <li><router-link to="/dashboard/participant-records">参加者記録登録</router-link></li>
+        <li><router-link to="/dashboard/participants">ユーザー管理</router-link></li>
+        <li><router-link to="/dashboard/participant-records">記録</router-link></li>
         <li><router-link to="/dashboard/events">種目管理</router-link></li>
       </ul>
     </nav>
