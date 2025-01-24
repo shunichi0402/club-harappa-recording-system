@@ -7,6 +7,7 @@
         <li><router-link to="/dashboard/participant-records">記録</router-link></li>
         <li><router-link to="/dashboard/events">種目管理</router-link></li>
         <li><router-link to="/dashboard/clubs">クラブ管理</router-link></li>
+        <li><router-link to="/dashboard/tournaments">大会管理</router-link></li>
       </ul>
     </nav>
   </div>
