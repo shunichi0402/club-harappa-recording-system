@@ -15,7 +15,11 @@
             </div>
             <div>
                 <label for="tournamentId">大会ID:</label>
-                <input type="text" id="tournamentId" v-model="tournamentId" required />
+                <select id="tournamentId" v-model="tournamentId" required>
+                    <option v-for="tournament in tournaments" :key="tournament.id" :value="tournament.id">
+                        {{ tournament.name }}
+                    </option>
+                </select>
             </div>
             <div>
                 <label for="eventId">種目ID:</label>
@@ -47,6 +51,7 @@ import { ref, onMounted } from 'vue'
 import { useRecordStore } from '../stores/recordStore'
 import { useParticipantStore } from '../stores/participantStore'
 import { useEventStore } from '../stores/eventStore'
+import { useTournamentStore } from '../stores/tournamentStore'
 
 const participantId = ref('')
 const tournamentId = ref('')
@@ -61,6 +66,9 @@ const participants = ref([])
 
 const eventStore = useEventStore()
 const events = ref([])
+
+const tournamentStore = useTournamentStore()
+const tournaments = ref([])
 
 const addRecord = async () => {
   const record = {
@@ -94,6 +102,11 @@ const fetchEvents = async () => {
   events.value = eventStore.events
 }
 
+const fetchTournaments = async () => {
+  await tournamentStore.fetchTournaments()
+  tournaments.value = tournamentStore.tournaments
+}
+
 const confirmDelete = (id) => {
   if (confirm('本当に削除しますか？')) {
     deleteRecord(id)
@@ -109,6 +122,7 @@ onMounted(() => {
   fetchRecords()
   fetchParticipants()
   fetchEvents()
+  fetchTournaments()
 })
 </script>
 
