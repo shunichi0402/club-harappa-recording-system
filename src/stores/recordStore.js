@@ -38,7 +38,7 @@ export const useRecordStore = defineStore('record', {
 
       const q = query(collection(db, 'records'), where('eventId', '==', eventId))
       const querySnapshot = await getDocs(q)
-      this.records = querySnapshot.docs.map(doc => {
+      const records = querySnapshot.docs.map(doc => {
         const data = doc.data()
         return {
           id: doc.id,
@@ -46,7 +46,17 @@ export const useRecordStore = defineStore('record', {
           participantName: participants.find(p => p.id === data.participantId)?.name || 'Unknown',
           eventName: events.find(e => e.id === data.eventId)?.name || 'Unknown'
         }
-      }).sort((a, b) => b.score - a.score)
+      })
+
+      const uniqueRecords = records.reduce((acc, record) => {
+        const existingRecord = acc.find(r => r.participantId === record.participantId)
+        if (!existingRecord || existingRecord.score < record.score) {
+          return acc.filter(r => r.participantId !== record.participantId).concat(record)
+        }
+        return acc
+      }, [])
+
+      this.records = uniqueRecords.sort((a, b) => b.score - a.score)
     },
     async addRecord(record) {
       await addDoc(collection(db, 'records'), record)
