@@ -11,8 +11,12 @@
                 <input type="text" id="name" v-model="name" required />
             </div>
             <div>
-                <label for="clubId">開催クラブID:</label>
-                <input type="text" id="clubId" v-model="clubId" required />
+                <label for="clubId">開催クラブ:</label>
+                <select id="clubId" v-model="clubId" required>
+                    <option v-for="club in clubs" :key="club.id" :value="club.id">
+                        {{ club.name }}
+                    </option>
+                </select>
             </div>
             <div>
                 <label for="date">開催日時:</label>
@@ -35,6 +39,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useTournamentStore } from '../stores/tournamentStore'
+import { useClubStore } from '../stores/clubStore'
 
 const name = ref('')
 const clubId = ref('')
@@ -43,6 +48,9 @@ const message = ref('')
 
 const tournamentStore = useTournamentStore()
 const tournaments = ref([])
+
+const clubStore = useClubStore()
+const clubs = ref([])
 
 const addTournament = async () => {
     const tournament = {
@@ -67,6 +75,11 @@ const fetchTournaments = async () => {
     tournaments.value = tournamentStore.tournaments
 }
 
+const fetchClubs = async () => {
+    await clubStore.fetchClubs()
+    clubs.value = clubStore.clubs
+}
+
 const confirmDelete = (id) => {
     if (confirm('本当に削除しますか？')) {
         deleteTournament(id)
@@ -80,6 +93,7 @@ const deleteTournament = async (id) => {
 
 onMounted(() => {
     fetchTournaments()
+    fetchClubs()
 })
 </script>
 
@@ -100,7 +114,7 @@ form label {
   font-weight: bold;
 }
 
-form input {
+form input, form select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
